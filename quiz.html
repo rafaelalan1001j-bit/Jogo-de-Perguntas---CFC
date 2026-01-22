@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz CFC - Desafio Contábil</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif; 
+        
+        /* MUDANÇA AQUI: Fundo rosa sólido em vez de imagem */
+        background-color: #ff4da6; 
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .quiz-container {
+        background: rgba(0,0,0,0.9);
+        padding: 30px;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 750px;
+        color: #fff;
+        text-align: center;
+        border: 4px solid #ff4da6;
+        box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+    }
+    .topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-family: 'Archivo Black', sans-serif;}
+    .barra { width: 70%; height: 12px; background: #444; border-radius: 6px; overflow: hidden; border: 2px solid #fff; }
+    #progresso { height: 100%; width: 0%; background: #ff4da6; transition: width 0.3s; }
+    #tempo { font-size: 1.2rem; color: #ff4da6;}
+
+    h2 { 
+        font-size: 1.1rem; 
+        margin-bottom: 25px; 
+        min-height: 60px; 
+        line-height: 1.5; 
+        color: #fff;
+        font-weight: normal;
+    }
+    h2 strong { color: #ff4da6; }
+
+    /* --- ESTILOS PARA TABELAS --- */
+    .quiz-table {
+        width: 100%;
+        max-width: 550px;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+        color: #fff;
+    }
+    .quiz-table th, .quiz-table td {
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding: 8px 12px;
+        text-align: left;
+    }
+    .quiz-table th {
+        background-color: rgba(255, 77, 166, 0.3);
+        color: #ff4da6;
+        font-family: 'Archivo Black', sans-serif;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+    }
+    .quiz-table td.valor {
+        text-align: right;
+        font-family: monospace;
+        font-weight: bold;
+    }
+    /* -------------------------------------------------- */
+
+    .opcoes button {
+        width: 100%; margin: 8px 0; padding: 14px; font-size: 1rem;
+        border-radius: 10px; border: 2px solid #ff4da6; cursor: pointer;
+        font-family: 'Archivo Black', sans-serif; transition: 0.2s;
+        background: transparent; color: #fff;
+    }
+    .opcoes button:hover { background: #ff4da6; color: #000; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 77, 166, 0.4); }
+</style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="topo">
+        <div id="tempo">⏱️ 150s</div>
+        <div class="barra"><div id="progresso"></div></div>
+    </div>
+    <h2 id="pergunta"></h2>
+    <div class="opcoes">
+        <button onclick="responder(0)"></button>
+        <button onclick="responder(1)"></button>
+        <button onclick="responder(2)"></button>
+        <button onclick="responder(3)"></button>
+    </div>
+</div>
+
+<script>
+const perguntas = [
+    {
+        pergunta: `Sua loja apresentou os seguintes saldos em 31/12. Calcule o <strong>Valor Adicionado Líquido</strong> para a DVA:
+        <table class="quiz-table">
+            <tr><th>Item</th><th>Valor (R$)</th></tr>
+            <tr><td>Receita de Vendas</td><td class="valor">200.000</td></tr>
+            <tr><td>CMV (incluso impostos)</td><td class="valor">(80.000)</td></tr>
+            <tr><td>Depreciação</td><td class="valor">(15.000)</td></tr>
+            <tr><td>Perdas (Crédito + Imobilizado)</td><td class="valor">(16.000)</td></tr>
+        </table>`,
+        opcoes: ["(A) R$ 89.000,00", "(B) R$ 114.000,00", "(C) R$ 104.000,00", "(D) R$ 194.000,00"],
+        correta: 0
+    },
+    {
+        pergunta: "Você contratou um influencer em <strong>Maio</strong> por R$ 20k (pago à vista). As postagens ocorreram metade em <strong>Junho</strong> e metade em <strong>Julho</strong>. Pelo Regime de Competência, quando você reconhece a despesa?",
+        opcoes: ["(A) R$ 20.000 em Maio", "(B) R$ 10.000 em Junho e R$ 10.000 em Julho", "(C) R$ 10.000 em Agosto e Setembro", "(D) R$ 5.000 de Junho a Setembro"],
+        correta: 1
+    },
+    {
+        pergunta: "Sua empresa teve gastos médicos de R$ 6.000 em Janeiro. Os funcionários arcam com 20% desse custo. Qual o impacto líquido na sua <strong>DRE de Janeiro</strong>?",
+        opcoes: ["(A) Despesa de R$ 400,00", "(B) Despesa de R$ 500,00", "(C) Despesa de R$ 4.800,00", "(D) Despesa de R$ 6.000,00"],
+        correta: 2
+    },
+    {
+        pergunta: `Analise os saldos do seu Balanço Patrimonial em 31/12. Qual o valor total do seu <strong>Ativo Não Circulante</strong>?
+        <table class="quiz-table">
+            <tr><th>Conta</th><th>Saldo (R$)</th></tr>
+            <tr><td>Caixa (Circulante)</td><td class="valor">100.000</td></tr>
+            <tr><td>Estoques (Circulante)</td><td class="valor">250.000</td></tr>
+            <tr><td>Imobilizado</td><td class="valor">450.000</td></tr>
+            <tr><td>Intangível</td><td class="valor">320.000</td></tr>
+        </table> (Empréstimos e Capital Social são Passivo/PL)`,
+        opcoes: ["(A) R$ 770.000,00", "(B) R$ 350.000,00", "(C) R$ 1.020.000,00", "(D) R$ 450.000,00"],
+        correta: 0
+    },
+    {
+        pergunta: "Classifique: 1.Empréstimo LP, 2.Contas a Receber (5 meses), 3.Fornecedores (3 meses), 4.Imóvel de uso. A ordem correta (AC, ANC, PC, PNC) é:",
+        opcoes: ["(A) 4 – 2 – 1 – 3", "(B) 2 – 4 – 3 – 1", "(C) 3 – 1 – 2 – 4", "(D) 1 – 3 – 4 – 2"],
+        correta: 1
+    },
+    {
+        pergunta: `Você adquiriu uma máquina nova. Calcule o <strong>Custo Inicial</strong> de registro no Ativo Imobilizado (NBC TG 27):
+        <table class="quiz-table">
+            <tr><td>Preço da Máquina</td><td class="valor">500.000</td></tr>
+            <tr><td>Imposto Importação (não recuperável)</td><td class="valor">50.000</td></tr>
+            <tr><td>Preparação do Local</td><td class="valor">100.000</td></tr>
+            <tr><td>Testes de Funcionamento</td><td class="valor">110.000</td></tr>
+        </table> (Valor residual de 100k não afeta o custo inicial)`,
+        opcoes: ["(A) R$ 500.000", "(B) R$ 550.000", "(C) R$ 650.000", "(D) R$ 760.000"],
+        correta: 3
+    },
+    {
+        pergunta: `Sua fábrica teve os seguintes gastos no mês. Qual o total dos seus <strong>Custos Fixos</strong>?
+        <table class="quiz-table">
+            <tr><td>Matéria-prima (Variável)</td><td class="valor">R$ 10.000</td></tr>
+            <tr><td>Embalagens (Variável)</td><td class="valor">R$ 2.000</td></tr>
+            <tr><td>Aluguel da Fábrica (Fixo)</td><td class="valor">R$ 30.000</td></tr>
+            <tr><td>Seguro do Imóvel (Fixo)</td><td class="valor">R$ 5.000</td></tr>
+        </table>`,
+        opcoes: ["(A) R$ 5.000,00", "(B) R$ 30.000,00", "(C) R$ 35.000,00", "(D) R$ 45.000,00"],
+        correta: 2
+    },
+    {
+        pergunta: "Analise as definições: I.Custo (Produção), II.Despesa (Consumo p/ Receita), III.Investimento (Gasto ativado), IV.Desembolso (Pagamento). Quais estão corretas?",
+        opcoes: ["(A) III e IV apenas", "(B) I, II e III apenas", "(C) I e II apenas", "(D) Todas (I, II, III e IV)"],
+        correta: 1
+    },
+    {
+        pergunta: `Calcule o Lucro pelo <strong>Custeio Variável</strong>:
+        <table class="quiz-table">
+            <tr><td>Vendas</td><td class="valor">24.000 un. a R$ 100,00</td></tr>
+            <tr><td>Custos Variáveis Totais</td><td class="valor">R$ 60,00 por unidade</td></tr>
+            <tr><td>Custos Fixos Totais</td><td class="valor">R$ 200.000</td></tr>
+            <tr><td>Despesas Fixas Totais</td><td class="valor">R$ 100.000</td></tr>
+        </table>`,
+        opcoes: ["(A) R$ 660.000,00", "(B) R$ 960.000,00", "(C) R$ 700.000,00", "(D) R$ 300.000,00"],
+        correta: 0
+    },
+    {
+        pergunta: "Uma máquina custou 350k (residual 50k). Após 4 anos de uso (vida original 10a), a vida útil remanescente foi revisada para <strong>mais 9 anos</strong>. Qual a nova depreciação anual?",
+        opcoes: ["(A) R$ 35.000", "(B) R$ 30.000", "(C) R$ 20.000", "(D) R$ 15.000"],
+        correta: 2
+    },
+    {
+        pergunta: `A diretoria decidiu vender dois equipamentos (NBC TG 31). Por quais valores eles devem ser mensurados agora?
+        <table class="quiz-table">
+            <tr><th>Ativo</th><th>Vlr Contábil Líquido</th><th>Vlr Justo Líquido (Venda)</th></tr>
+            <tr><td>Equip. 1</td><td class="valor">R$ 500k</td><td class="valor">R$ 750k</td></tr>
+            <tr><td>Equip. 2</td><td class="valor">R$ 1.500k</td><td class="valor">R$ 1.250k</td></tr>
+        </table> (Regra: O menor entre Contábil e Justo)`,
+        opcoes: ["(A) Eq 1: 500k | Eq 2: 1.250k", "(B) Eq 1: 500k | Eq 2: 1.500k", "(C) Eq 1: 750k | Eq 2: 1.500k", "(D) Eq 1: 750k | Eq 2: 1.250k"],
+        correta: 0
+    },
+    {
+        pergunta: "Estrutura Conceitual (V ou F): ( )Ativo é recurso controlado. ( )Passivo é obrigação futura. ( )Receita é aumento de PL (exceto aporte). ( )Despesa é redução de PL (exceto distribuição).",
+        opcoes: ["(A) F – F – V – V", "(B) F – V – F – V", "(C) V – F – V – F", "(D) V – V – F – F"],
+        correta: 0
+    },
+    {
+        pergunta: "Usando Custo Médio Ponderado Móvel, após diversas compras e vendas em Jan/Fev/Mar, o valor aproximado do estoque final em 31/03 foi de:",
+        opcoes: ["(A) R$ 7.840,00", "(B) R$ 8.326,00", "(C) R$ 9.100,00", "(D) R$ 10.905,00"],
+        correta: 1
+    },
+    {
+        pergunta: "Sua empresa alugou um equipamento de baixo valor por 10 meses (Total R$ 30k). Optando pela isenção da NBC TG 06 (Arrendamentos), qual o tratamento contábil?",
+        opcoes: ["(A) Reconhecer o total como despesa no início", "(B) Capitalizar no Ativo Imobilizado", "(C) Reconhecer despesa linearmente (R$ 3k/mês)", "(D) Reconhecer Ativo de Direito de Uso"],
+        correta: 2
+    },
+    {
+        pergunta: `Calcule o <strong>Custo das Mercadorias Vendidas (CMV)</strong> do período com base nos dados:
+        <table class="quiz-table">
+            <tr><td>Estoque Inicial</td><td class="valor">(+) 3.000</td></tr>
+            <tr><td>Compras</td><td class="valor">(+) 5.000</td></tr>
+            <tr><td>Devolução de Compras</td><td class="valor">(-) 500</td></tr>
+            <tr><td>Estoque Final</td><td class="valor">(-) 2.000</td></tr>
+        </table>`,
+        opcoes: ["(A) R$ 6.000,00", "(B) R$ 7.500,00", "(C) R$ 8.000,00", "(D) R$ 5.500,00"],
+        correta: 3
+    },
+    {
+        pergunta: "Comparativo de Lucros: Produção 12k, Venda 9k. Custos Fixos R$ 42k. O lucro no Custeio por Absorção será _______ que no Variável, pois parte dos custos fixos ficou no estoque.",
+        opcoes: ["(A) Menor (45k vs 11k)", "(B) Igual (56k vs 56k)", "(C) Maior (45k vs 112k)", "(D) Maior (56k vs 45k)"],
+        correta: 3
+    },
+    {
+        pergunta: "Análise de Estrutura: Ativo Total = R$ 200k. Passivo Total (Exigível) = R$ 140k. Logo, o Patrimônio Líquido é R$ 60k. Qual a proporção de <strong>Capital Próprio</strong> financiando o Ativo?",
+        opcoes: ["(A) 30%", "(B) 40%", "(C) 60%", "(D) 70%"],
+        correta: 0
+    },
+    {
+        pergunta: `Realize o teste de recuperação (Impairment) de uma máquina. Qual será o <strong>Valor Recuperável</strong> final?
+        <table class="quiz-table">
+            <tr><th>Dado</th><th>Valor</th></tr>
+            <tr><td>Valor Contábil Atual</td><td class="valor">R$ 400.000</td></tr>
+            <tr><td colspan="2" style="text-align:center; font-size:0.8rem;">Comparar os dois abaixo e pegar o MAIOR:</td></tr>
+            <tr><td>a) Valor em Uso</td><td class="valor">R$ 380.000</td></tr>
+            <tr><td>b) Valor Justo Líquido</td><td class="valor">R$ 390.000</td></tr>
+        </table>`,
+        opcoes: ["(A) R$ 400.000 (Não há perda)", "(B) R$ 390.000 (Valor Justo)", "(C) R$ 380.000 (Valor em Uso)", "(D) R$ 500.000 (Custo original)"],
+        correta: 1
+    },
+    {
+        pergunta: "Uma propriedade para renda tem valor de mercado de R$ 1.120. Se vendida, haveria uma despesa de corretagem de R$ 50. Qual o <strong>Valor Justo</strong> a ser registrado?",
+        opcoes: ["(A) R$ 1.070", "(B) R$ 1.000", "(C) R$ 1.170", "(D) R$ 1.120"],
+        correta: 3
+    },
+    {
+        pergunta: "Segmentos Operacionais (CPC 22): Dois segmentos podem ser agregados se tiverem características econômicas similares, EXCETO se a similaridade for apenas em:",
+        opcoes: ["(A) Processos de produção", "(B) Tipo de clientes", "(C) Resultados absolutos iguais", "(D) Ambiente regulatório"],
+        correta: 2
+    }
+];
+
+let indice = 0; let pontos = 0; 
+let tempo = 150;
+
+const perguntaEl = document.getElementById("pergunta");
+const botoes = document.querySelectorAll(".opcoes button");
+const progresso = document.getElementById("progresso");
+const tempoEl = document.getElementById("tempo");
+
+function iniciarQuiz() {
+    mostrarPergunta();
+    const cronometro = setInterval(() => {
+        tempo--;
+        tempoEl.textContent = `⏱️ ${tempo}s`;
+        if (tempo <= 0) { clearInterval(cronometro); finalizarQuiz(); }
+    }, 1000);
+}
+
+function mostrarPergunta() {
+    const q = perguntas[indice];
+    perguntaEl.innerHTML = q.pergunta; 
+    botoes.forEach((btn, i) => btn.textContent = q.opcoes[i]);
+    progresso.style.width = `${((indice) / perguntas.length) * 100}%`;
+}
+
+function responder(opcao) {
+    if (opcao === perguntas[indice].correta) { pontos++; }
+    indice++;
+    if (indice < perguntas.length) { mostrarPergunta(); } else { finalizarQuiz(); }
+}
+
+function finalizarQuiz() {
+    localStorage.setItem("pontuacao", pontos);
+    localStorage.setItem("total", perguntas.length);
+    window.location.href = "resultado.html";
+}
+iniciarQuiz();
+</script>
+</body>
+</html>
