@@ -123,13 +123,15 @@ const bancoPerguntas = [
     },
     {
         pergunta: "Estrutura Conceitual: Ativo é recurso controlado, Passivo é obrigação presente, Receita aumenta PL. A sequência V/F é:",
-        opcoes: ["F-F-V-V", "F-V-F-V", "V-F-V-F", "V-V-F-F"], correta: 0,
+        opcoes: ["F-F-V", "F-V-F", "V-F-V", "V-V-F"], correta: 0,
         explicacao: "Definições oficiais da NBC TG EC."
     },
+    
     {
-        pergunta: "Pelo Custo Médio Ponderado Móvel, o valor final aproximado do estoque após as movimentações do trimestre é:",
-        opcoes: ["R$ 7.840", "R$ 8.326", "R$ 9.100", "R$ 10.905"], correta: 1,
-        explicacao: "Cálculo baseado na média das compras subtraindo o custo das vendas."
+    pergunta: "A Cia. Gold vende pulseiras e não tinha estoque inicial. Calcule o <strong>Estoque Final</strong> pelo Custo Médio Ponderado Móvel:<table class='quiz-table'><tr><th>Data</th><th>Movimentação</th><th>Valor Total</th></tr><tr><td>05/01</td><td>Compra de 20 un.</td><td>R$ 10.000</td></tr><tr><td>25/01</td><td>Venda de 10 un.</td><td>-</td></tr><tr><td>05/02</td><td>Compra de 12 un.</td><td>R$ 7.200</td></tr><tr><td>20/02</td><td>Venda de 11 un.</td><td>-</td></tr><tr><td>10/03</td><td>Compra de 8 un.</td><td>R$ 5.200</td></tr><tr><td>27/03</td><td>Venda de 5 un.</td><td>-</td></tr></table>",
+    opcoes: ["R$ 7.840", "R$ 8.326", "R$ 9.100", "R$ 10.905"], correta: 1,
+    explicacao: "Cálculo: (1) Média Jan: 500/un. (2) Saldo após venda Jan: 10 un (R$ 5k). (3) Média Fev: (5k+7.2k)/22 un = 554,54. (4) Saldo após venda Fev: 11 un (R$ 6.100). (5) Média Mar: (6.1k+5.2k)/19 un = 594,73. (6) Final: 14 un * 594,73 ≈ R$ 8.326."
+
     },
     {
         pergunta: "Arrendamento de baixo valor (R$ 30k por 10 meses). Qual o tratamento pela NBC TG 06?",
@@ -248,3 +250,4 @@ iniciarQuiz();
 </script>
 </body>
 </html>
+
