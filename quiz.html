@@ -71,102 +71,181 @@ const bancoPerguntas = [
         opcoes: ["R$ 89.000,00", "R$ 114.000,00", "R$ 104.000,00", "R$ 194.000,00"], correta: 0,
         explicacao: "VAL = Receita (200k) - Insumos (80k) - Depr (15k) - Perdas (16k) = 89k."
     },
+    // --- NOVAS QUESTÕES ADICIONADAS (LOTE 11-45) ---
     {
-        pergunta: "Você contratou um influencer em Maio por R$ 20k. Ele realizou metade das postagens em Junho e metade em Julho. Como registrar a despesa?",
-        opcoes: ["R$ 20.000 em maio", "R$ 10.000 em junho e R$ 10.000 em julho", "R$ 20.000 em agosto", "R$ 5.000 de junho a setembro"], correta: 1,
-        explicacao: "Pelo Regime de Competência, a despesa ocorre no período da prestação do serviço (Junho e Julho)."
+        pergunta: "A informação contábil deve ser útil para a tomada de decisão. Qual alternativa apresenta uma <strong>característica qualitativa fundamental</strong>?",
+        opcoes: ["(A) Tempestividade", "(B) Compreensibilidade", "(C) Comparabilidade", "(D) Relevância"], correta: 3,
+        explicacao: "As características fundamentais são Relevância e Representação Fidedigna. As outras são de melhoria."
     },
     {
-        pergunta: "Cia Lua gastou R$ 6.000 com médicos. 20% são pagos pelos empregados. Qual o impacto na DRE da empresa?",
-        opcoes: ["-R$ 400,00", "-R$ 500,00", "-R$ 4.800,00", "-R$ 6.000,00"], correta: 2,
-        explicacao: "A despesa da empresa é de 80% (100% - 20%). 80% de 6.000 = 4.800."
+        pergunta: "Para que a informação contábil-financeira tenha <strong>representação fidedigna</strong>, ela precisa ser:",
+        opcoes: ["(A) Neutra, prudente e tempestiva", "(B) Completa, neutra e livre de erro", "(C) Comparável, verificável e clara", "(D) Compreensível, objetiva e consistente"], correta: 1,
+        explicacao: "Representação fidedigna exige que a informação seja completa, neutra e isenta de erros."
     },
     {
-        pergunta: "Com base nos saldos abaixo, qual o valor do <strong>Ativo Não Circulante</strong>?<table class='quiz-table'><tr><td>Caixa / Estoques</td><td>350.000</td></tr><tr><td>Imobilizado</td><td>450.000</td></tr><tr><td>Intangível</td><td>320.000</td></tr></table>",
-        opcoes: ["R$ 770.000,00", "R$ 350.000,00", "R$ 1.020.000,00", "R$ 450.000,00"], correta: 0,
-        explicacao: "ANC = Imobilizado (450k) + Intangível (320k) = 770k."
+        pergunta: "Qual característica de melhoria permite identificar <strong>semelhanças e diferenças</strong> entre itens de diferentes períodos ou entidades?",
+        opcoes: ["(A) Verificabilidade", "(B) Tempestividade", "(C) Comparabilidade", "(D) Compreensibilidade"], correta: 2,
+        explicacao: "A comparabilidade permite ao usuário confrontar dados e identificar tendências e variações."
     },
     {
-        pergunta: "Relacione: 1.Empréstimo (12m+), 2.Rec em 5m, 3.Pag em 3m, 4.Imóvel (10 anos). A ordem (AC-ANC-PC-PNC) é:",
-        opcoes: ["4-2-1-3", "2-4-3-1", "3-1-2-4", "1-3-4-2"], correta: 1,
-        explicacao: "2(AC), 4(ANC), 3(PC), 1(PNC)."
+        pergunta: "Segundo a Estrutura Conceitual (CPC 00), a definição correta de <strong>passivo</strong> é:",
+        opcoes: ["(A) Um recurso controlado pela entidade", "(B) Uma obrigação possível decorrente de eventos passados", "(C) Um gasto incorrido para obtenção de receitas", "(D) Uma obrigação presente resultante de eventos passados"], correta: 3,
+        explicacao: "Passivo é uma obrigação presente da entidade de transferir um recurso econômico como resultado de eventos passados."
     },
     {
-        pergunta: "Custo inicial da Máquina: Preço 500k, Imp. Importação 50k, Local 100k, Testes 110k. Vida 10a, Residual 100k. Qual o valor de registro?",
-        opcoes: ["R$ 500.000", "R$ 550.000", "R$ 650.000", "R$ 760.000"], correta: 3,
-        explicacao: "Soma-se todos os gastos necessários para a máquina funcionar: 500+50+100+110 = 760k."
+        pergunta: "O conceito de <strong>manutenção do capital financeiro</strong> ocorre quando o lucro é apurado considerando que:",
+        opcoes: ["(A) O capital físico foi mantido", "(B) O poder de compra foi preservado", "(C) Os ativos foram avaliados a valor justo", "(D) O capital monetário inicial foi mantido"], correta: 3,
+        explicacao: "Neste conceito, o lucro é obtido se o valor financeiro líquido dos ativos ao fim do período exceder o valor do início."
     },
     {
-        pergunta: "Uma fábrica gastou: Aluguel e Seguro (35k), Embalagens (2k), Matéria-prima (10k). Quais são os <strong>Custos Fixos</strong>?",
-        opcoes: ["R$ 5.000", "R$ 30.000", "R$ 35.000", "R$ 45.000"], correta: 2,
-        explicacao: "Custos fixos não variam com a produção: Aluguel (30k) + Seguro (5k) = 35k."
+        pergunta: "As <strong>Normas Brasileiras de Contabilidade (NBCs)</strong> são classificadas tecnicamente em:",
+        opcoes: ["(A) Profissionais e legais", "(B) Gerais e específicas", "(C) Técnicas e profissionais", "(D) Públicas e privadas"], correta: 2,
+        explicacao: "As NBCs dividem-se em Profissionais (comportamento do contador) e Técnicas (regras de registro)."
     },
     {
-        pergunta: "Sobre Gastos: I.Custo (Direto na produção), II.Despesa (Consumo p/ receita), III.Investimento (Ativado). Quais estão corretas?",
-        opcoes: ["I e III", "II e III", "I e II", "I, II e III"], correta: 3,
-        explicacao: "Todas as três definições seguem os princípios fundamentais da contabilidade de custos."
+        pergunta: "Segundo a <strong>NBC TG 27</strong>, qual destes itens <strong>NÃO</strong> compõe o custo inicial de um ativo imobilizado?",
+        opcoes: ["(A) Custos de instalação", "(B) Frete e seguro", "(C) Custos administrativos gerais", "(D) Testes para funcionamento"], correta: 2,
+        explicacao: "Custos administrativos e despesas gerais não são necessários para colocar o ativo em operação, logo, são despesas."
     },
     {
-        pergunta: "Custeio Variável: Vendeu 24k un a R$ 100. Custos Var Unitários R$ 60. Fixos Totais R$ 300k. Qual o lucro?",
-        opcoes: ["R$ 660.000", "R$ 960.000", "R$ 700.000", "R$ 300.000"], correta: 0,
-        explicacao: "Lucro = (100 - 60) * 24.000 - 300.000 = 960k - 300k = 660k."
+        pergunta: "Na contabilidade, a <strong>materialidade</strong> de uma informação depende de qual fator?",
+        opcoes: ["(A) Apenas do valor monetário", "(B) Apenas do julgamento profissional", "(C) Do tipo de entidade", "(D) Da natureza ou magnitude da informação"], correta: 3,
+        explicacao: "A informação é material se sua omissão ou erro puder influenciar decisões de usuários."
     },
     {
-        pergunta: "Máquina 350k (residual 50k). Após 4 anos, a vida remanescente é de 9 anos. Qual a nova depreciação anual?",
-        opcoes: ["R$ 35.000", "R$ 30.000", "R$ 20.000", "R$ 15.000"], correta: 2,
-        explicacao: "Vlr Contábil após 4 anos = 230k. (230k - 50k) / 9 anos = 20k."
+        pergunta: "Conforme a <strong>NBC TG 25</strong>, uma provisão deve ser reconhecida no balanço quando:",
+        opcoes: ["(A) Existe obrigação presente e estimativa confiável", "(B) Existe obrigação possível", "(C) Há intenção futura de gasto", "(D) O valor é irrelevante"], correta: 0,
+        explicacao: "Requisitos: Obrigação presente, probabilidade de saída de recursos e estimativa confiável."
     },
     {
-        pergunta: "NBC TG 31: Eq 1 (Contábil 500k, Justo 750k). Eq 2 (Contábil 1.5M, Justo 1.25M). Como mensurar para venda?",
-        opcoes: ["Eq1: 500k, Eq2: 1.25M", "Eq1: 500k, Eq2: 1.5M", "Eq1: 750k, Eq2: 1.5M", "Eq1: 750k, Eq2: 1.25M"], correta: 0,
-        explicacao: "Ativos para venda são mensurados pelo menor valor entre o contábil e o justo líquido."
+        pergunta: "De acordo com a <strong>NBC TG 03</strong>, como devem ser classificados os <strong>juros pagos</strong> na DFC (método encorajado)?",
+        opcoes: ["(A) Fluxo Operacional", "(B) Fluxo de Financiamento", "(C) Fluxo de Investimento", "(D) Fluxo Extraordinário"], correta: 0,
+        explicacao: "Embora haja opções, a NBC TG 03 encoraja a classificação como operacional para juros e dividendos pagos."
     },
     {
-        pergunta: "Estrutura Conceitual: Ativo é recurso controlado, Passivo é obrigação presente, Receita aumenta PL. A sequência V/F é:",
-        opcoes: ["F-F-V", "F-V-F", "V-F-V", "V-V-F"], correta: 0,
-        explicacao: "Definições oficiais da NBC TG EC."
-    },
-    
-    {
-    pergunta: "A Cia. Gold vende pulseiras e não tinha estoque inicial. Calcule o <strong>Estoque Final</strong> pelo Custo Médio Ponderado Móvel:<table class='quiz-table'><tr><th>Data</th><th>Movimentação</th><th>Valor Total</th></tr><tr><td>05/01</td><td>Compra de 20 un.</td><td>R$ 10.000</td></tr><tr><td>25/01</td><td>Venda de 10 un.</td><td>-</td></tr><tr><td>05/02</td><td>Compra de 12 un.</td><td>R$ 7.200</td></tr><tr><td>20/02</td><td>Venda de 11 un.</td><td>-</td></tr><tr><td>10/03</td><td>Compra de 8 un.</td><td>R$ 5.200</td></tr><tr><td>27/03</td><td>Venda de 5 un.</td><td>-</td></tr></table>",
-    opcoes: ["R$ 7.840", "R$ 8.326", "R$ 9.100", "R$ 10.905"], correta: 1,
-    explicacao: "Cálculo: (1) Média Jan: 500/un. (2) Saldo após venda Jan: 10 un (R$ 5k). (3) Média Fev: (5k+7.2k)/22 un = 554,54. (4) Saldo após venda Fev: 11 un (R$ 6.100). (5) Média Mar: (6.1k+5.2k)/19 un = 594,73. (6) Final: 14 un * 594,73 ≈ R$ 8.326."
-
+        pergunta: "Segundo a <strong>NBC TG 16</strong>, qual item faz parte do custo de formação dos estoques?",
+        opcoes: ["(A) Perdas anormais de produção", "(B) Despesas administrativas", "(C) Custos de aquisição e transformação", "(D) Despesas de vendas"], correta: 2,
+        explicacao: "O custo inclui todos os gastos para trazer o estoque à sua condição e localização atuais."
     },
     {
-        pergunta: "Arrendamento de baixo valor (R$ 30k por 10 meses). Qual o tratamento pela NBC TG 06?",
-        opcoes: ["Despesa no início", "Capitalizar", "Despesa linear", "Direito de Uso"], correta: 2,
-        explicacao: "Isenção permite reconhecimento linear como despesa operacional."
+        pergunta: "Como as <strong>despesas antecipadas</strong> (como prêmios de seguro a vencer) devem aparecer no Balanço Patrimonial?",
+        opcoes: ["(A) Passivo circulante", "(B) Passivo não circulante", "(C) Ativo não circulante", "(D) Ativo circulante"], correta: 3,
+        explicacao: "Representam um direito da entidade de receber um serviço já pago, sendo um ativo."
     },
     {
-        pergunta: "Calcule o CMV: Est. Inicial 3k, Compras 5k, Devolução Compras 500, Est. Final 2k.",
-        opcoes: ["R$ 6.000", "R$ 7.500", "R$ 8.000", "R$ 5.500"], correta: 3,
-        explicacao: "CMV = 3.000 + (5.000 - 500) - 2.000 = 5.500."
+        pergunta: "O reconhecimento contábil da despesa com <strong>salários e encargos</strong> deve obrigatoriamente seguir o:",
+        opcoes: ["(A) Regime de caixa", "(B) Regime misto", "(C) Regime de competência", "(D) Regime financeiro"], correta: 2,
+        explicacao: "As receitas e despesas são reconhecidas no período em que ocorrem, independente do pagamento."
     },
     {
-        pergunta: "Custeio por Absorção vs Variável: Se a produção (12k) é maior que a venda (9k), o lucro por absorção será:",
-        opcoes: ["Menor", "Igual", "Maior (45k vs 11k)", "Maior (56k vs 45k)"], correta: 3,
-        explicacao: "Parte dos custos fixos fica 'preso' no estoque no custeio por absorção."
+        pergunta: "As obrigações que vencerão <strong>após o término do exercício social seguinte</strong> são classificadas como:",
+        opcoes: ["(A) Passivo não circulante", "(B) Passivo circulante", "(C) Patrimônio líquido", "(D) Provisões"], correta: 0,
+        explicacao: "Obrigações de longo prazo pertencem ao Passivo Não Circulante."
     },
     {
-        pergunta: "Ativo 200k, Passivo 140k. Qual a proporção do Capital Próprio que financia o ativo?",
-        opcoes: ["30%", "40%", "60%", "70%"], correta: 0,
-        explicacao: "PL = 60k. 60k / 200k = 30%."
+        pergunta: "Na <strong>Demonstração do Valor Adicionado (DVA)</strong>, o valor do aluguel pago a terceiros entra em qual grupo?",
+        opcoes: ["(A) Valor adicionado bruto", "(B) Insumo adquirido de terceiros", "(C) Distribuição do valor adicionado", "(D) Receita operacional"], correta: 2,
+        explicacao: "Aluguel representa a remuneração do capital de terceiros (proprietários de imóveis)."
     },
     {
-        pergunta: "Impairment: Contábil 400k. Uso 380k. Justo Líquido 390k. Qual o valor recuperável?",
-        opcoes: ["R$ 400.000", "R$ 390.000", "R$ 380.000", "R$ 500.000"], correta: 1,
-        explicacao: "Vlr Recuperável é o maior entre Uso e Justo (390k)."
+        pergunta: "Segundo a <strong>NBC TG 36</strong>, o controle sobre uma investida é caracterizado quando a investidora:",
+        opcoes: ["(A) Possui 20% do capital", "(B) Influencia decisões operacionais", "(C) Tem poder e exposição a retornos variáveis", "(D) Participa do conselho fiscal"], correta: 3,
+        explicacao: "O controle exige poder sobre a investida, exposição a retornos e capacidade de usar o poder para afetar retornos."
     },
     {
-        pergunta: "Imóvel para renda. Mercado 1.120. Corretagem 50. Qual o Valor Justo no balanço?",
-        opcoes: ["R$ 1.070", "R$ 1.000", "R$ 1.170", "R$ 1.120"], correta: 3,
-        explicacao: "Valor justo para propriedades de investimento não deduz despesas de venda."
+        pergunta: "Como devem ser classificados contabilmente os <strong>terrenos mantidos para valorização</strong> a longo prazo?",
+        opcoes: ["(A) Propriedade para investimento", "(B) Ativo circulante", "(C) Estoques", "(D) Ativo intangível"], correta: 0,
+        explicacao: "Se o objetivo é renda ou valorização, e não uso ou venda imediata, é Propriedade para Investimento."
     },
     {
-        pergunta: "CPC 22: Segmentos podem ser agregados se tiverem características semelhantes, EXCETO:",
-        opcoes: ["Processos", "Clientes", "Resultados Absolutos", "Regras"], correta: 2,
-        explicacao: "Resultados absolutos iguais não é critério de agregação."
+        pergunta: "Segundo a <strong>Lei nº 6.404/76</strong> (e alterações), qual destas NÃO é obrigatória para companhias fechadas com PL inferior a R$ 2 milhões?",
+        opcoes: ["(A) Balanço Patrimonial", "(B) Demonstração do Resultado", "(C) Demonstração do Valor Adicionado", "(D) Demonstração dos Fluxos de Caixa"], correta: 2,
+        explicacao: "A DVA é obrigatória apenas para companhias abertas."
+    },
+    {
+        pergunta: "O <strong>Ativo Fiscal Diferido</strong> (imposto a compensar no futuro) geralmente decorre de:",
+        opcoes: ["(A) Diferenças temporárias dedutíveis", "(B) Diferenças permanentes", "(C) Incentivos fiscais", "(D) Ajustes de avaliação patrimonial"], correta: 1,
+        explicacao: "Diferenças temporárias dedutíveis geram ativos diferidos; diferenças permanentes não geram diferimento."
+    },
+    {
+        pergunta: "Qual é a principal finalidade da constituição de <strong>reservas de lucros</strong> no Patrimônio Líquido?",
+        opcoes: ["(A) Aumentar o capital social", "(B) Distribuir dividendos", "(C) Reter lucros para finalidades específicas", "(D) Ajustar valores a mercado"], correta: 0,
+        explicacao: "Servem para preservar o capital e garantir recursos para expansão, contingências ou incentivos."
+    },
+    {
+        pergunta: "Uma <strong>provisão para reestruturação</strong> só deve ser reconhecida no balanço quando:",
+        opcoes: ["(A) A entidade decide internamente", "(B) Há apenas intenção futura", "(C) Existe obrigação possível", "(D) Há plano formal e comunicação aos envolvidos"], correta: 3,
+        explicacao: "A obrigação só se torna presente quando o plano é detalhado e gera expectativa real nos afetados."
+    },
+    {
+        pergunta: "Na baixa de um imobilizado, o <strong>ganho ou perda de capital</strong> é a diferença entre:",
+        opcoes: ["(A) Valor de mercado e custo histórico", "(B) Valor justo e custo de aquisição", "(C) Valor da venda e valor contábil líquido", "(D) Valor residual e depreciação acumulada"], correta: 2,
+        explicacao: "Comparamos o valor líquido (Custo - Depreciação) com o valor recebido na venda."
+    },
+    {
+        pergunta: "De acordo com as normas, a <strong>DRE</strong> pode apresentar a classificação das despesas de duas formas:",
+        opcoes: ["(A) Ordem cronológica", "(B) Grau de liquidez", "(C) Natureza ou função", "(D) Regime de caixa"], correta: 2,
+        explicacao: "Pela natureza (salários, aluguel) ou pela função (custos de vendas, adm, financeiras)."
+    },
+    {
+        pergunta: "Na Demonstração dos Fluxos de Caixa (DFC), o <strong>pagamento a fornecedores</strong> de mercadorias é:",
+        opcoes: ["(A) Fluxo de Financiamento", "(B) Fluxo Operacional", "(C) Fluxo de Investimento", "(D) Fluxo Não Operacional"], correta: 1,
+        explicacao: "Pagamentos ligados à atividade principal da empresa são fluxos operacionais."
+    },
+    {
+        pergunta: "Segundo a <strong>NBC TG 16</strong>, em notas explicativas sobre estoques, a entidade deve divulgar:",
+        opcoes: ["(A) Apenas o método de avaliação", "(B) Políticas contábeis adotadas e valores reconhecidos", "(C) Apenas o custo médio", "(D) Somente perdas por obsolescência"], correta: 1,
+        explicacao: "Deve-se detalhar os critérios de mensuração e a composição dos saldos por categorias."
+    },
+    {
+        pergunta: "As <strong>Notas Explicativas</strong> são fundamentais no relatório financeiro porque visam:",
+        opcoes: ["(A) Substituir as demonstrações", "(B) Corrigir erros contábeis", "(C) Detalhar apenas valores irrelevantes", "(D) Complementar e esclarecer as demonstrações"], correta: 3,
+        explicacao: "Fornecem informações adicionais que não estão na face das demonstrações, mas são essenciais."
+    },
+    {
+        pergunta: "No método de avaliação de estoques <strong>PEPS</strong> (Primeiro que Entra, Primeiro que Sai), o CMV é composto por:",
+        opcoes: ["(A) Últimas unidades adquiridas", "(B) Média ponderada", "(C) Custo padrão", "(D) Primeiras unidades adquiridas"], correta: 3,
+        explicacao: "As mercadorias que entraram primeiro no estoque são as primeiras a serem baixadas na venda."
+    },
+    {
+        pergunta: "Em sistemas de custos por processo, o conceito de <strong>produção equivalente</strong> refere-se:",
+        opcoes: ["(A) À produção iniciada", "(B) À produção acabada", "(C) À produção em estoque final", "(D) À produção expressa em unidades completas"], correta: 3,
+        explicacao: "Traduz unidades semiacabadas em uma quantidade correspondente de unidades prontas."
+    },
+    {
+        pergunta: "No custeio padrão, como chamamos a diferença encontrada entre o <strong>custo real</strong> e o <strong>custo padrão</strong>?",
+        opcoes: ["(A) Variação", "(B) Margem", "(C) Rateio", "(D) Resultado operacional"], correta: 0,
+        explicacao: "As variações podem ser de preço, quantidade ou eficiência."
+    },
+    {
+        pergunta: "O principal objetivo do método de <strong>Custeio Baseado em Atividades (ABC)</strong> é:",
+        opcoes: ["(A) Reduzir impostos", "(B) Melhorar a apropriação dos custos indiretos", "(C) Eliminar custos fixos", "(D) Simplificar a contabilidade"], correta: 1,
+        explicacao: "Atribui custos aos produtos com base no consumo que eles fazem das atividades da empresa."
+    },
+    {
+        pergunta: "A técnica de <strong>Análise Horizontal</strong> das demonstrações permite avaliar principalmente:",
+        opcoes: ["(A) Estrutura patrimonial", "(B) Evolução dos valores ao longo do tempo", "(C) Liquidez imediata", "(D) Rentabilidade"], correta: 1,
+        explicacao: "Compara a variação percentual de cada conta em relação a um período base."
+    },
+    {
+        pergunta: "Qual é a fórmula correta para encontrar o índice de <strong>Liquidez Corrente</strong>?",
+        opcoes: ["(A) Ativo total ÷ passivo total", "(B) Ativo circulante ÷ passivo circulante", "(C) Ativo não circulante ÷ passivo não circulante", "(D) Disponível ÷ passivo exigível"], correta: 1,
+        explicacao: "Mede a capacidade da empresa de pagar suas dívidas de curto prazo com seus bens de curto prazo."
+    },
+    {
+        pergunta: "Na contabilidade pública, a assinatura de <strong>contratos administrativos</strong> gera qual registro?",
+        opcoes: ["(A) Receita orçamentária", "(B) Despesa orçamentária", "(C) Receita extraorçamentária", "(D) Despesa extraorçamentária"], correta: 1,
+        explicacao: "O compromisso de gasto público deve ser empenhado como despesa orçamentária."
+    },
+    {
+        pergunta: "Segundo o MCASP, a informação contábil focada em <strong>controle</strong> tem como finalidade:",
+        opcoes: ["(A) Evidenciar custos", "(B) Apoiar decisões gerenciais", "(C) Evidenciar legalidade e conformidade", "(D) Medir desempenho econômico"], correta: 2,
+        explicacao: "Garante que os atos de gestão pública sigam a legislação e os limites orçamentários."
+    },
+    {
+        pergunta: "As <strong>Receitas Orçamentárias</strong> na esfera pública são ingressos que:",
+        opcoes: ["(A) Não afetam o patrimônio", "(B) São devolvidos ao final do exercício", "(C) Aumentam o patrimônio líquido", "(D) São extraorçamentários"], correta: 2,
+        explicacao: "Representam disponibilidades de recursos que integram o patrimônio do ente público."
     }
 ];
 
@@ -250,4 +329,5 @@ iniciarQuiz();
 </script>
 </body>
 </html>
+
 
