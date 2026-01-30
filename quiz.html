@@ -356,8 +356,10 @@ function finalizarQuiz() {
     // Alerta caso não exista o arquivo resultado.html ainda
     setTimeout(() => { 
         alert(`Fim de jogo! Você fez ${pontos} pontos.`);
-        // window.location.href = "resultado.html"; 
-    }, 1000);
+    setTimeout(() => { 
+    window.location.href = "resultado.html"; 
+}, 1500);
+    
 }
 
 // Inicia o script
