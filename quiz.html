@@ -357,14 +357,10 @@ function finalizarQuiz() {
     localStorage.setItem("total", perguntas.length);
 
     setTimeout(() => {
-    
-        
-        setTimeout(() => {
-            window.location.href = "resultado.html";
-        }, 1500);
-
-    }, 300);
+        window.location.href = "resultado.html";
+    }, 500);
 }
+
 
 
 // Inicia o script
@@ -372,6 +368,7 @@ window.onload = iniciarQuiz;
 </script>
 </body>
 </html>
+
 
 
 
