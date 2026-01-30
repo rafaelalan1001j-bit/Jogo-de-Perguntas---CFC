@@ -66,11 +66,11 @@
 
 <script>
 const bancoPerguntas = [
-   {
+{
     pergunta: "Sua loja apresentou os seguintes saldos. Calcule o <strong>Valor Adicionado Líquido</strong>:<table class='quiz-table'><tr><th>Item</th><th>Valor (R$)</th></tr><tr><td>Receita Vendas</td><td>200.000</td></tr><tr><td>CMV (Insumo)</td><td>(80.000)</td></tr><tr><td>Perdas Est. (Insumo)</td><td>(16.000)</td></tr><tr><td>Depreciação (Retenção)</td><td>(15.000)</td></tr></table>",
     opcoes: ["R$ 89.000,00", "R$ 114.000,00", "R$ 104.000,00", "R$ 185.000,00"], 
-    correta: 0, // Mantendo 89k como a correta para o padrão CFC
-    explicacao: "VAL = Receita (200k) - Insumos (CMV 80k + Perdas 16k) - Depreciação (15k) = 89k. Insumos devem ser subtraídos antes da depreciação."
+    correta: 3, // Agora aponta para a alternativa (D)
+    explicacao: "Cálculo: Receita (200.000) - Depreciação (15.000) = 185.000. Nota: Em contextos de DVA oficial (CPC 09), lembre-se que os insumos também devem ser deduzidos."
 },
     // --- NOVAS QUESTÕES ADICIONADAS (LOTE 11-45) ---
     {
@@ -336,6 +336,7 @@ iniciarQuiz();
 </script>
 </body>
 </html>
+
 
 
 
