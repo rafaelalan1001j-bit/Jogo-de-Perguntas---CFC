@@ -169,11 +169,17 @@ const bancoPerguntas = [
         opcoes: ["(A) Balanço Patrimonial", "(B) Demonstração do Resultado", "(C) Demonstração do Valor Adicionado", "(D) Demonstração dos Fluxos de Caixa"], correta: 2,
         explicacao: "A DVA é obrigatória apenas para companhias abertas."
     },
-    {
-        pergunta: "O <strong>Ativo Fiscal Diferido</strong> (imposto a compensar no futuro) geralmente decorre de:",
-        opcoes: ["(A) Diferenças temporárias dedutíveis", "(B) Diferenças permanentes", "(C) Incentivos fiscais", "(D) Ajustes de avaliação patrimonial"], correta: 1,
-        explicacao: "Diferenças temporárias dedutíveis geram ativos diferidos; diferenças permanentes não geram diferimento."
-    },
+ {
+    pergunta: "O <strong>Ativo Fiscal Diferido</strong> (imposto a compensar no futuro) geralmente decorre de:",
+    opcoes: [
+        "(A) Diferenças temporárias dedutíveis", 
+        "(B) Diferenças permanentes", 
+        "(C) Incentivos fiscais", 
+        "(D) Ajustes de avaliação patrimonial"
+    ], 
+    correta: 0, // Ajustado para a letra (A)
+    explicacao: "Diferenças temporárias dedutíveis geram ativos diferidos que serão recuperados no futuro. Diferenças permanentes não geram diferimento."
+},
     {
         pergunta: "Qual é a principal finalidade da constituição de <strong>reservas de lucros</strong> no Patrimônio Líquido?",
         opcoes: ["(A) Aumentar o capital social", "(B) Distribuir dividendos", "(C) Reter lucros para finalidades específicas", "(D) Ajustar valores a mercado"], correta: 0,
@@ -336,6 +342,7 @@ iniciarQuiz();
 </script>
 </body>
 </html>
+
 
 
 
