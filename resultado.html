@@ -10,7 +10,8 @@
         h1 { color: #ff4da6; }
         table { width: 100%; margin: 20px 0; border-collapse: collapse; }
         td { padding: 10px; border-bottom: 1px solid #333; }
-        button { padding: 15px 40px; background: #fff; border: 4px solid #ff4da6; border-radius: 50px; cursor: pointer; font-family: 'Archivo Black'; }
+        button { padding: 15px 40px; background: #fff; border: 4px solid #ff4da6; border-radius: 50px; cursor: pointer; font-family: 'Archivo Black'; transition: 0.3s; }
+        button:hover { background: #ff4da6; color: white; border-color: white; }
     </style>
 </head>
 <body>
@@ -19,23 +20,41 @@
         <p id="atual"></p>
         <h2>🏆 TOP 5</h2>
         <table><tbody id="ranking"></tbody></table>
-        <button onclick="window.location.href='index.html'">RECOMEÇAR</button>
+        <button onclick="recomecar()">RECOMEÇAR</button>
     </div>
+
     <script>
         const pontos = parseInt(localStorage.getItem("pontuacao")) || 0;
         const total = parseInt(localStorage.getItem("total")) || 0;
         document.getElementById("atual").textContent = `Você acertou ${pontos} de ${total}!`;
 
+        // Recupera o ranking atual
         let rank = JSON.parse(localStorage.getItem("rankingCFC")) || [];
-        rank.push({ pontos, data: new Date().toLocaleDateString('pt-BR') });
-        rank.sort((a, b) => b.pontos - a.pontos);
-        rank = rank.slice(0, 5);
-        localStorage.setItem("rankingCFC", JSON.stringify(rank));
 
+        // Lógica para evitar que o ponto seja adicionado várias vezes ao atualizar a página
+        const registrado = sessionStorage.getItem("pontoJaRegistrado");
+
+        if (!registrado) {
+            rank.push({ pontos, data: new Date().toLocaleDateString('pt-BR') });
+            rank.sort((a, b) => b.pontos - a.pontos);
+            rank = rank.slice(0, 5); // Mantém apenas o Top 5
+            localStorage.setItem("rankingCFC", JSON.stringify(rank));
+            sessionStorage.setItem("pontoJaRegistrado", "true");
+        }
+
+        // Exibe o ranking na tabela
         const tab = document.getElementById("ranking");
+        tab.innerHTML = ""; // Limpa antes de preencher
         rank.forEach((it, i) => {
             tab.innerHTML += `<tr><td>${i+1}º</td><td>${it.data}</td><td>${it.pontos} ACERTOS</td></tr>`;
         });
+
+        function recomecar() {
+            // Limpa o estado para permitir novo registro no próximo fim de jogo
+            sessionStorage.removeItem("pontoJaRegistrado");
+            window.location.href = 'index.html'; 
+        }
     </script>
 </body>
 </html>
+
