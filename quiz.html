@@ -66,12 +66,13 @@
 
 <script>
 const bancoPerguntas = [
-    {
-        pergunta: "Sua loja apresentou os seguintes saldos. Calcule o <strong>Valor Adicionado Líquido</strong>:<table class='quiz-table'><tr><th>Item</th><th>Valor (R$)</th></tr><tr><td>Receita Vendas</td><td>200.000</td></tr><tr><td>CMV (Insumo)</td><td>(80.000)</td></tr><tr><td>Perdas Est. (Insumo)</td><td>(16.000)</td></tr><tr><td>Depreciação (Retenção)</td><td>(15.000)</td></tr></table>",
-        opcoes: ["R$ 89.000,00", "R$ 114.000,00", "R$ 104.000,00", "R$ 185.000,00"], 
-        correta: 0,
-        explicacao: "VAL = Receita (200k) - Insumos (CMV 80k + Perdas 16k) - Depreciação (15k) = 89k."
-    }, // <-- A VÍRGULA QUE FALTAVA ESTAVA AQUI
+   {
+    pergunta: "Sua loja apresentou os seguintes saldos. Calcule o <strong>Valor Adicionado Líquido</strong>, conforme a DVA:<table class='quiz-table'><tr><th>Item</th><th>Valor (R$)</th></tr><tr><td>Receita de Vendas</td><td>200.000</td></tr><tr><td>CMV (Insumos)</td><td>(80.000)</td></tr><tr><td>Perdas de Estoques (Insumos)</td><td>(16.000)</td></tr><tr><td>Depreciação</td><td>(15.000)</td></tr></table>",
+    opcoes: ["R$ 89.000,00", "R$ 104.000,00", "R$ 119.000,00", "R$ 185.000,00"],
+    correta: 0,
+    explicacao: "VAB = 200.000 − (80.000 + 16.000) = 104.000. VAL = 104.000 − 15.000 = 89.000."
+},
+
     {
         pergunta: "A informação contábil deve ser útil para a tomada de decisão. Qual alternativa apresenta uma <strong>característica qualitativa fundamental</strong>?",
         opcoes: ["(A) Tempestividade", "(B) Compreensibilidade", "(C) Comparabilidade", "(D) Relevância"], correta: 3,
@@ -118,10 +119,11 @@ const bancoPerguntas = [
         explicacao: "Requisitos: Obrigação presente, probabilidade de saída e estimativa confiável."
     },
     {
-        pergunta: "De acordo com a <strong>NBC TG 03</strong>, como devem ser classificados os <strong>juros pagos</strong> na DFC (método encorajado)?",
-        opcoes: ["(A) Fluxo Operacional", "(B) Fluxo de Financiamento", "(C) Fluxo de Investimento", "(D) Fluxo Extraordinário"], correta: 0,
-        explicacao: "A NBC TG 03 encoraja a classificação como operacional para juros e dividendos pagos."
-    },
+    pergunta: "De acordo com a <strong>NBC TG 03</strong>, os <strong>juros pagos</strong> na Demonstração dos Fluxos de Caixa podem ser classificados como:",
+    opcoes: ["(A) Apenas fluxo operacional", "(B) Apenas fluxo de financiamento", "(C) Fluxo operacional ou de financiamento", "(D) Fluxo de investimento"],
+    correta: 2,
+    explicacao: "A NBC TG 03 permite classificar juros pagos como fluxo operacional ou de financiamento, conforme política contábil adotada."
+},
     {
         pergunta: "Como as <strong>despesas antecipadas</strong> (como prêmios de seguro a vencer) devem aparecer no Balanço Patrimonial?",
         opcoes: ["(A) Passivo circulante", "(B) Passivo não circulante", "(C) Ativo não circulante", "(D) Ativo circulante"], correta: 3,
@@ -228,11 +230,12 @@ const bancoPerguntas = [
         opcoes: ["(A) Ativo total ÷ passivo total", "(B) Ativo circulante ÷ passivo circulante", "(C) Ativo não circulante ÷ passivo não circulante", "(D) Disponível ÷ passivo exigível"], correta: 1,
         explicacao: "Mede a capacidade de pagar dívidas de curto prazo com bens de curto prazo."
     },
-    {
-        pergunta: "Na contabilidade pública, a assinatura de <strong>contratos administrativos</strong> gera qual registro?",
-        opcoes: ["(A) Receita orçamentária", "(B) Despesa orçamentária", "(C) Receita extraorçamentária", "(D) Despesa extraorçamentária"], correta: 1,
-        explicacao: "O compromisso de gasto público deve ser empenhado como despesa orçamentária."
-    },
+   {
+    pergunta: "Na contabilidade pública, o <strong>empenho da despesa</strong> decorrente de contratos administrativos gera qual tipo de registro?",
+    opcoes: ["(A) Receita orçamentária", "(B) Despesa orçamentária", "(C) Receita extraorçamentária", "(D) Despesa extraorçamentária"],
+    correta: 1,
+    explicacao: "O empenho representa o reconhecimento da despesa orçamentária, conforme o MCASP."
+},
     {
         pergunta: "Segundo o MCASP, a informação contábil focada em <strong>controle</strong> tem como finalidade:",
         opcoes: ["(A) Evidenciar custos", "(B) Apoiar decisões gerenciais", "(C) Evidenciar legalidade e conformidade", "(D) Medir desempenho econômico"], correta: 2,
@@ -369,6 +372,7 @@ window.onload = iniciarQuiz;
 </script>
 </body>
 </html>
+
 
 
 
