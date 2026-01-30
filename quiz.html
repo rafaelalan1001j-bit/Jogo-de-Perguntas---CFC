@@ -50,7 +50,7 @@
         <div id="tempo">⏱️ 400s</div>
         <div class="barra"><div id="progresso"></div></div>
     </div>
-    <h2 id="pergunta"></h2>
+    <h2 id="pergunta">Carregando pergunta...</h2>
     <div id="explicacao-box"></div>
     <div class="opcoes" id="opcoes-container">
         <button onclick="responder(0)"></button>
@@ -66,17 +66,16 @@
 
 <script>
 const bancoPerguntas = [
-{
-    pergunta: "Sua loja apresentou os seguintes saldos. Calcule o <strong>Valor Adicionado Líquido</strong>:<table class='quiz-table'><tr><th>Item</th><th>Valor (R$)</th></tr><tr><td>Receita Vendas</td><td>200.000</td></tr><tr><td>CMV (Insumo)</td><td>(80.000)</td></tr><tr><td>Perdas Est. (Insumo)</td><td>(16.000)</td></tr><tr><td>Depreciação (Retenção)</td><td>(15.000)</td></tr></table>",
-    opcoes: ["R$ 89.000,00", "R$ 114.000,00", "R$ 104.000,00", "R$ 185.000,00"], 
-    correta: 0, // Mantendo 89k como a correta para o padrão CFC
-    explicacao: "VAL = Receita (200k) - Insumos (CMV 80k + Perdas 16k) - Depreciação (15k) = 89k. Insumos devem ser subtraídos antes da depreciação."
-}
-    // --- NOVAS QUESTÕES ADICIONADAS (LOTE 11-45) ---
+    {
+        pergunta: "Sua loja apresentou os seguintes saldos. Calcule o <strong>Valor Adicionado Líquido</strong>:<table class='quiz-table'><tr><th>Item</th><th>Valor (R$)</th></tr><tr><td>Receita Vendas</td><td>200.000</td></tr><tr><td>CMV (Insumo)</td><td>(80.000)</td></tr><tr><td>Perdas Est. (Insumo)</td><td>(16.000)</td></tr><tr><td>Depreciação (Retenção)</td><td>(15.000)</td></tr></table>",
+        opcoes: ["R$ 89.000,00", "R$ 114.000,00", "R$ 104.000,00", "R$ 185.000,00"], 
+        correta: 0,
+        explicacao: "VAL = Receita (200k) - Insumos (CMV 80k + Perdas 16k) - Depreciação (15k) = 89k."
+    }, // <-- A VÍRGULA QUE FALTAVA ESTAVA AQUI
     {
         pergunta: "A informação contábil deve ser útil para a tomada de decisão. Qual alternativa apresenta uma <strong>característica qualitativa fundamental</strong>?",
         opcoes: ["(A) Tempestividade", "(B) Compreensibilidade", "(C) Comparabilidade", "(D) Relevância"], correta: 3,
-        explicacao: "As características fundamentais são Relevância e Representação Fidedigna. As outras são de melhoria."
+        explicacao: "As características fundamentais são Relevância e Representação Fidedigna."
     },
     {
         pergunta: "Para que a informação contábil-financeira tenha <strong>representação fidedigna</strong>, ela precisa ser:",
@@ -86,63 +85,52 @@ const bancoPerguntas = [
     {
         pergunta: "Qual característica de melhoria permite identificar <strong>semelhanças e diferenças</strong> entre itens de diferentes períodos ou entidades?",
         opcoes: ["(A) Verificabilidade", "(B) Tempestividade", "(C) Comparabilidade", "(D) Compreensibilidade"], correta: 2,
-        explicacao: "A comparabilidade permite ao usuário confrontar dados e identificar tendências e variações."
+        explicacao: "A comparabilidade permite ao usuário confrontar dados e identificar variações."
     },
     {
         pergunta: "Segundo a Estrutura Conceitual (CPC 00), a definição correta de <strong>passivo</strong> é:",
         opcoes: ["(A) Um recurso controlado pela entidade", "(B) Uma obrigação possível decorrente de eventos passados", "(C) Um gasto incorrido para obtenção de receitas", "(D) Uma obrigação presente resultante de eventos passados"], correta: 3,
-        explicacao: "Passivo é uma obrigação presente da entidade de transferir um recurso econômico como resultado de eventos passados."
+        explicacao: "Passivo é uma obrigação presente de transferir um recurso econômico resultante de eventos passados."
     },
     {
         pergunta: "O conceito de <strong>manutenção do capital financeiro</strong> ocorre quando o lucro é apurado considerando que:",
         opcoes: ["(A) O capital físico foi mantido", "(B) O poder de compra foi preservado", "(C) Os ativos foram avaliados a valor justo", "(D) O capital monetário inicial foi mantido"], correta: 3,
-        explicacao: "Neste conceito, o lucro é obtido se o valor financeiro líquido dos ativos ao fim do período exceder o valor do início."
+        explicacao: "O lucro é obtido se o valor financeiro líquido dos ativos ao fim exceder o do início."
     },
     {
         pergunta: "As <strong>Normas Brasileiras de Contabilidade (NBCs)</strong> são classificadas tecnicamente em:",
         opcoes: ["(A) Profissionais e legais", "(B) Gerais e específicas", "(C) Técnicas e profissionais", "(D) Públicas e privadas"], correta: 2,
-        explicacao: "As NBCs dividem-se em Profissionais (comportamento do contador) e Técnicas (regras de registro)."
+        explicacao: "As NBCs dividem-se em Profissionais e Técnicas."
     },
     {
         pergunta: "Segundo a <strong>NBC TG 27</strong>, qual destes itens <strong>NÃO</strong> compõe o custo inicial de um ativo imobilizado?",
         opcoes: ["(A) Custos de instalação", "(B) Frete e seguro", "(C) Custos administrativos gerais", "(D) Testes para funcionamento"], correta: 2,
-        explicacao: "Custos administrativos e despesas gerais não são necessários para colocar o ativo em operação, logo, são despesas."
+        explicacao: "Custos administrativos não são necessários para colocar o ativo em operação, logo, são despesas."
     },
     {
         pergunta: "Na contabilidade, a <strong>materialidade</strong> de uma informação depende de qual fator?",
         opcoes: ["(A) Apenas do valor monetário", "(B) Apenas do julgamento profissional", "(C) Do tipo de entidade", "(D) Da natureza ou magnitude da informação"], correta: 3,
-        explicacao: "A informação é material se sua omissão ou erro puder influenciar decisões de usuários."
+        explicacao: "A informação é material se sua omissão puder influenciar decisões."
     },
     {
         pergunta: "Conforme a <strong>NBC TG 25</strong>, uma provisão deve ser reconhecida no balanço quando:",
         opcoes: ["(A) Existe obrigação presente e estimativa confiável", "(B) Existe obrigação possível", "(C) Há intenção futura de gasto", "(D) O valor é irrelevante"], correta: 0,
-        explicacao: "Requisitos: Obrigação presente, probabilidade de saída de recursos e estimativa confiável."
+        explicacao: "Requisitos: Obrigação presente, probabilidade de saída e estimativa confiável."
     },
     {
         pergunta: "De acordo com a <strong>NBC TG 03</strong>, como devem ser classificados os <strong>juros pagos</strong> na DFC (método encorajado)?",
         opcoes: ["(A) Fluxo Operacional", "(B) Fluxo de Financiamento", "(C) Fluxo de Investimento", "(D) Fluxo Extraordinário"], correta: 0,
-        explicacao: "Embora haja opções, a NBC TG 03 encoraja a classificação como operacional para juros e dividendos pagos."
+        explicacao: "A NBC TG 03 encoraja a classificação como operacional para juros e dividendos pagos."
     },
-{
-    pergunta: "Segundo a NBC TG 36, o controle sobre uma investida é caracterizado quando a investidora:",
-    opcoes: [
-        "(A) Possui 20% do capital", 
-        "(B) Influencia decisões operacionais", 
-        "(C) Tem poder e exposição a retornos variáveis", 
-        "(D) Participa do conselho fiscal"
-    ], 
-    correta: 2, // Corrigido para a letra (C)
-    explicacao: "O controle exige poder sobre a investida, exposição a retornos e capacidade de usar o poder para afetar retornos (NBC TG 36)."
-},
     {
         pergunta: "Como as <strong>despesas antecipadas</strong> (como prêmios de seguro a vencer) devem aparecer no Balanço Patrimonial?",
         opcoes: ["(A) Passivo circulante", "(B) Passivo não circulante", "(C) Ativo não circulante", "(D) Ativo circulante"], correta: 3,
-        explicacao: "Representam um direito da entidade de receber um serviço já pago, sendo um ativo."
+        explicacao: "Representam um direito de receber um serviço já pago, sendo um ativo circulante."
     },
     {
         pergunta: "O reconhecimento contábil da despesa com <strong>salários e encargos</strong> deve obrigatoriamente seguir o:",
         opcoes: ["(A) Regime de caixa", "(B) Regime misto", "(C) Regime de competência", "(D) Regime financeiro"], correta: 2,
-        explicacao: "As receitas e despesas são reconhecidas no período em que ocorrem, independente do pagamento."
+        explicacao: "Segue-se o regime de competência, independente do pagamento."
     },
     {
         pergunta: "As obrigações que vencerão <strong>após o término do exercício social seguinte</strong> são classificadas como:",
@@ -152,78 +140,73 @@ const bancoPerguntas = [
     {
         pergunta: "Na <strong>Demonstração do Valor Adicionado (DVA)</strong>, o valor do aluguel pago a terceiros entra em qual grupo?",
         opcoes: ["(A) Valor adicionado bruto", "(B) Insumo adquirido de terceiros", "(C) Distribuição do valor adicionado", "(D) Receita operacional"], correta: 2,
-        explicacao: "Aluguel representa a remuneração do capital de terceiros (proprietários de imóveis)."
+        explicacao: "Aluguel representa a remuneração do capital de terceiros."
     },
     {
         pergunta: "Segundo a <strong>NBC TG 36</strong>, o controle sobre uma investida é caracterizado quando a investidora:",
-        opcoes: ["(A) Possui 20% do capital", "(B) Influencia decisões operacionais", "(C) Tem poder e exposição a retornos variáveis", "(D) Participa do conselho fiscal"], correta: 3,
-        explicacao: "O controle exige poder sobre a investida, exposição a retornos e capacidade de usar o poder para afetar retornos."
+        opcoes: ["(A) Possui 20% do capital", "(B) Influencia decisões operacionais", "(C) Tem poder e exposição a retornos variáveis", "(D) Participa do conselho fiscal"], correta: 2,
+        explicacao: "O controle exige poder, exposição a retornos e capacidade de usar o poder para afetar esses retornos."
     },
     {
         pergunta: "Como devem ser classificados contabilmente os <strong>terrenos mantidos para valorização</strong> a longo prazo?",
         opcoes: ["(A) Propriedade para investimento", "(B) Ativo circulante", "(C) Estoques", "(D) Ativo intangível"], correta: 0,
-        explicacao: "Se o objetivo é renda ou valorização, e não uso ou venda imediata, é Propriedade para Investimento."
+        explicacao: "Se o objetivo é renda ou valorização, é Propriedade para Investimento."
     },
     {
-        pergunta: "Segundo a <strong>Lei nº 6.404/76</strong> (e alterações), qual destas NÃO é obrigatória para companhias fechadas com PL inferior a R$ 2 milhões?",
+        pergunta: "Segundo a <strong>Lei nº 6.404/76</strong>, qual destas NÃO é obrigatória para companhias fechadas com PL inferior a R$ 2 milhões?",
         opcoes: ["(A) Balanço Patrimonial", "(B) Demonstração do Resultado", "(C) Demonstração do Valor Adicionado", "(D) Demonstração dos Fluxos de Caixa"], correta: 2,
         explicacao: "A DVA é obrigatória apenas para companhias abertas."
     },
- {
-    pergunta: "O <strong>Ativo Fiscal Diferido</strong> (imposto a compensar no futuro) geralmente decorre de:",
-    opcoes: [
-        "(A) Diferenças temporárias dedutíveis", 
-        "(B) Diferenças permanentes", 
-        "(C) Incentivos fiscais", 
-        "(D) Ajustes de avaliação patrimonial"
-    ], 
-    correta: 0, // Ajustado para a letra (A)
-    explicacao: "Diferenças temporárias dedutíveis geram ativos diferidos que serão recuperados no futuro. Diferenças permanentes não geram diferimento."
-},
+    {
+        pergunta: "O <strong>Ativo Fiscal Diferido</strong> (imposto a compensar no futuro) geralmente decorre de:",
+        opcoes: ["(A) Diferenças temporárias dedutíveis", "(B) Diferenças permanentes", "(C) Incentivos fiscais", "(D) Ajustes de avaliação patrimonial"], 
+        correta: 0,
+        explicacao: "Diferenças temporárias dedutíveis geram ativos diferidos que serão recuperados no futuro."
+    },
     {
         pergunta: "Qual é a principal finalidade da constituição de <strong>reservas de lucros</strong> no Patrimônio Líquido?",
-        opcoes: ["(A) Aumentar o capital social", "(B) Distribuir dividendos", "(C) Reter lucros para finalidades específicas", "(D) Ajustar valores a mercado"], correta: 0,
-        explicacao: "Servem para preservar o capital e garantir recursos para expansão, contingências ou incentivos."
+        opcoes: ["(A) Reter lucros para finalidades específicas", "(B) Aumentar o capital social", "(C) Distribuir dividendos", "(D) Ajustar valores a mercado"], correta: 0,
+        explicacao: "Servem para preservar o capital para expansão, contingências ou incentivos."
     },
     {
         pergunta: "Uma <strong>provisão para reestruturação</strong> só deve ser reconhecida no balanço quando:",
         opcoes: ["(A) A entidade decide internamente", "(B) Há apenas intenção futura", "(C) Existe obrigação possível", "(D) Há plano formal e comunicação aos envolvidos"], correta: 3,
-        explicacao: "A obrigação só se torna presente quando o plano é detalhado e gera expectativa real nos afetados."
+        explicacao: "A obrigação surge quando o plano é detalhado e gera expectativa real nos afetados."
     },
     {
         pergunta: "Na baixa de um imobilizado, o <strong>ganho ou perda de capital</strong> é a diferença entre:",
         opcoes: ["(A) Valor de mercado e custo histórico", "(B) Valor justo e custo de aquisição", "(C) Valor da venda e valor contábil líquido", "(D) Valor residual e depreciação acumulada"], correta: 2,
-        explicacao: "Comparamos o valor líquido (Custo - Depreciação) com o valor recebido na venda."
+        explicacao: "Compara-se o valor líquido com o valor recebido na venda."
     },
     {
         pergunta: "De acordo com as normas, a <strong>DRE</strong> pode apresentar a classificação das despesas de duas formas:",
         opcoes: ["(A) Ordem cronológica", "(B) Grau de liquidez", "(C) Natureza ou função", "(D) Regime de caixa"], correta: 2,
-        explicacao: "Pela natureza (salários, aluguel) ou pela função (custos de vendas, adm, financeiras)."
+        explicacao: "Pela natureza (salários, aluguel) ou pela função (custos de vendas, adm)."
     },
     {
         pergunta: "Na Demonstração dos Fluxos de Caixa (DFC), o <strong>pagamento a fornecedores</strong> de mercadorias é:",
         opcoes: ["(A) Fluxo de Financiamento", "(B) Fluxo Operacional", "(C) Fluxo de Investimento", "(D) Fluxo Não Operacional"], correta: 1,
-        explicacao: "Pagamentos ligados à atividade principal da empresa são fluxos operacionais."
+        explicacao: "Pagamentos ligados à atividade principal são fluxos operacionais."
     },
     {
         pergunta: "Segundo a <strong>NBC TG 16</strong>, em notas explicativas sobre estoques, a entidade deve divulgar:",
         opcoes: ["(A) Apenas o método de avaliação", "(B) Políticas contábeis adotadas e valores reconhecidos", "(C) Apenas o custo médio", "(D) Somente perdas por obsolescência"], correta: 1,
-        explicacao: "Deve-se detalhar os critérios de mensuração e a composição dos saldos por categorias."
+        explicacao: "Deve-se detalhar critérios de mensuração e composição dos saldos."
     },
     {
         pergunta: "As <strong>Notas Explicativas</strong> são fundamentais no relatório financeiro porque visam:",
         opcoes: ["(A) Substituir as demonstrações", "(B) Corrigir erros contábeis", "(C) Detalhar apenas valores irrelevantes", "(D) Complementar e esclarecer as demonstrações"], correta: 3,
-        explicacao: "Fornecem informações adicionais que não estão na face das demonstrações, mas são essenciais."
+        explicacao: "Fornecem informações essenciais que não estão na face das demonstrações."
     },
     {
-        pergunta: "No método de avaliação de estoques <strong>PEPS</strong> (Primeiro que Entra, Primeiro que Sai), o CMV é composto por:",
+        pergunta: "No método de avaliação de estoques <strong>PEPS</strong>, o CMV é composto por:",
         opcoes: ["(A) Últimas unidades adquiridas", "(B) Média ponderada", "(C) Custo padrão", "(D) Primeiras unidades adquiridas"], correta: 3,
-        explicacao: "As mercadorias que entraram primeiro no estoque são as primeiras a serem baixadas na venda."
+        explicacao: "As mercadorias que entraram primeiro são as primeiras a sair."
     },
     {
         pergunta: "Em sistemas de custos por processo, o conceito de <strong>produção equivalente</strong> refere-se:",
         opcoes: ["(A) À produção iniciada", "(B) À produção acabada", "(C) À produção em estoque final", "(D) À produção expressa em unidades completas"], correta: 3,
-        explicacao: "Traduz unidades semiacabadas em uma quantidade correspondente de unidades prontas."
+        explicacao: "Traduz unidades semiacabadas em quantidades equivalentes de unidades prontas."
     },
     {
         pergunta: "No custeio padrão, como chamamos a diferença encontrada entre o <strong>custo real</strong> e o <strong>custo padrão</strong>?",
@@ -233,7 +216,7 @@ const bancoPerguntas = [
     {
         pergunta: "O principal objetivo do método de <strong>Custeio Baseado em Atividades (ABC)</strong> é:",
         opcoes: ["(A) Reduzir impostos", "(B) Melhorar a apropriação dos custos indiretos", "(C) Eliminar custos fixos", "(D) Simplificar a contabilidade"], correta: 1,
-        explicacao: "Atribui custos aos produtos com base no consumo que eles fazem das atividades da empresa."
+        explicacao: "Atribui custos com base no consumo que os produtos fazem das atividades."
     },
     {
         pergunta: "A técnica de <strong>Análise Horizontal</strong> das demonstrações permite avaliar principalmente:",
@@ -243,7 +226,7 @@ const bancoPerguntas = [
     {
         pergunta: "Qual é a fórmula correta para encontrar o índice de <strong>Liquidez Corrente</strong>?",
         opcoes: ["(A) Ativo total ÷ passivo total", "(B) Ativo circulante ÷ passivo circulante", "(C) Ativo não circulante ÷ passivo não circulante", "(D) Disponível ÷ passivo exigível"], correta: 1,
-        explicacao: "Mede a capacidade da empresa de pagar suas dívidas de curto prazo com seus bens de curto prazo."
+        explicacao: "Mede a capacidade de pagar dívidas de curto prazo com bens de curto prazo."
     },
     {
         pergunta: "Na contabilidade pública, a assinatura de <strong>contratos administrativos</strong> gera qual registro?",
@@ -253,12 +236,12 @@ const bancoPerguntas = [
     {
         pergunta: "Segundo o MCASP, a informação contábil focada em <strong>controle</strong> tem como finalidade:",
         opcoes: ["(A) Evidenciar custos", "(B) Apoiar decisões gerenciais", "(C) Evidenciar legalidade e conformidade", "(D) Medir desempenho econômico"], correta: 2,
-        explicacao: "Garante que os atos de gestão pública sigam a legislação e os limites orçamentários."
+        explicacao: "Garante que os atos de gestão sigam a legislação e limites orçamentários."
     },
     {
         pergunta: "As <strong>Receitas Orçamentárias</strong> na esfera pública são ingressos que:",
         opcoes: ["(A) Não afetam o patrimônio", "(B) São devolvidos ao final do exercício", "(C) Aumentam o patrimônio líquido", "(D) São extraorçamentários"], correta: 2,
-        explicacao: "Representam disponibilidades de recursos que integram o patrimônio do ente público."
+        explicacao: "Representam recursos que integram definitivamente o patrimônio público."
     }
 ];
 
@@ -266,24 +249,39 @@ let perguntas = [];
 let indice = 0; let pontos = 0; let vidas = 3; let tempo = 400; let ajudaUsada = false;
 
 function iniciarQuiz() {
-    perguntas = bancoPerguntas.sort(() => Math.random() - 0.5);
+    // Embaralha e inicia
+    perguntas = [...bancoPerguntas].sort(() => Math.random() - 0.5);
+    atualizarVidas();
     mostrarPergunta();
+    
     const timer = setInterval(() => {
         tempo--;
         document.getElementById("tempo").textContent = `⏱️ ${tempo}s`;
-        if (tempo <= 0 || vidas <= 0) { clearInterval(timer); finalizarQuiz(); }
+        if (tempo <= 0 || vidas <= 0) { 
+            clearInterval(timer); 
+            finalizarQuiz(); 
+        }
     }, 1000);
 }
 
 function mostrarPergunta() {
+    if (indice >= perguntas.length) {
+        finalizarQuiz();
+        return;
+    }
+
     const q = perguntas[indice];
     document.getElementById("pergunta").innerHTML = q.pergunta;
     document.getElementById("explicacao-box").style.display = "none";
+    
     const botoes = document.querySelectorAll(".opcoes button");
     botoes.forEach((btn, i) => {
         btn.textContent = q.opcoes[i];
-        btn.className = ""; btn.disabled = false; btn.style.display = "block";
+        btn.className = ""; 
+        btn.disabled = false; 
+        btn.style.display = "block";
     });
+    
     document.getElementById("progresso").style.width = `${(indice / perguntas.length) * 100}%`;
 }
 
@@ -291,26 +289,32 @@ function responder(opcao) {
     const q = perguntas[indice];
     const botoes = document.querySelectorAll(".opcoes button");
     const exp = document.getElementById("explicacao-box");
-    document.getElementById("som-clique").play();
+    
+    document.getElementById("som-clique").play().catch(() => {});
     botoes.forEach(b => b.disabled = true);
 
     if (opcao === q.correta) {
-        document.getElementById("som-acerto").play();
+        document.getElementById("som-acerto").play().catch(() => {});
         botoes[opcao].classList.add("btn-correto");
         pontos++;
     } else {
-        document.getElementById("som-erro").play();
+        document.getElementById("som-erro").play().catch(() => {});
         botoes[opcao].classList.add("btn-errado");
         botoes[q.correta].classList.add("btn-correto");
-        vidas--; atualizarVidas();
+        vidas--; 
+        atualizarVidas();
     }
+    
     exp.innerHTML = `<strong>Dica Contábil:</strong> ${q.explicacao}`;
     exp.style.display = "block";
 
     setTimeout(() => {
         if (vidas > 0) {
-            indice++; indice < perguntas.length ? mostrarPergunta() : finalizarQuiz();
-        } else { finalizarQuiz(); }
+            indice++; 
+            mostrarPergunta();
+        } else { 
+            finalizarQuiz(); 
+        }
     }, 2500);
 }
 
@@ -319,26 +323,45 @@ function atualizarVidas() {
 }
 
 function usar5050() {
-    if (ajudaUsada) return;
+    if (ajudaUsada || indice >= perguntas.length) return;
     const correta = perguntas[indice].correta;
     let removidos = 0;
     const btns = document.querySelectorAll(".opcoes button");
-    for (let i = 0; i < 4; i++) {
-        if (i !== correta && removidos < 2) { btns[i].style.display = "none"; removidos++; }
-    }
-    ajudaUsada = true; document.getElementById("btn-5050").disabled = true;
+    
+    // Lista de índices que podem ser removidos (não pode ser o correto)
+    let indicesParaRemover = [0, 1, 2, 3].filter(i => i !== correta);
+    // Embaralha os índices errados e pega os 2 primeiros
+    indicesParaRemover.sort(() => Math.random() - 0.5);
+    
+    btns[indicesParaRemover[0]].style.display = "none";
+    btns[indicesParaRemover[1]].style.display = "none";
+    
+    ajudaUsada = true; 
+    document.getElementById("btn-5050").disabled = true;
 }
 
 function finalizarQuiz() {
     if (pontos === perguntas.length && vidas > 0) {
-        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#ff4da6', '#ffffff'] });
+        confetti({ 
+            particleCount: 150, 
+            spread: 70, 
+            origin: { y: 0.6 }, 
+            colors: ['#ff4da6', '#ffffff'] 
+        });
     }
+    
     localStorage.setItem("pontuacao", pontos);
     localStorage.setItem("total", perguntas.length);
-    setTimeout(() => { window.location.href = "resultado.html"; }, 1500);
+    
+    // Alerta caso não exista o arquivo resultado.html ainda
+    setTimeout(() => { 
+        alert(`Fim de jogo! Você fez ${pontos} pontos.`);
+        // window.location.href = "resultado.html"; 
+    }, 1000);
 }
 
-iniciarQuiz();
+// Inicia o script
+window.onload = iniciarQuiz;
 </script>
 </body>
 </html>
